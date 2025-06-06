@@ -7,15 +7,17 @@ if (timer_movement <= 0)
 	direction = irandom_range(0, 359);
 	
 	// Regenerate Energy
-	if (f_chance(0.75)) cell_energy += 2;
+	var _energy = 2;
+	if (is_friendly) _energy = 3;
+	if (f_chance(0.75)) cell_energy += _energy;
 	
 	// Divide
 	if (cell_energy >= cell_energy_max)
 	{
 		switch(is_friendly)
 		{
-			case true: if (f_chance(0.1)) f_cell_divide(); break;
-			case false: if (f_chance(0.6)) f_cell_divide(); break;
+			case true: if (f_chance(0.2)) f_cell_divide(); break;
+			case false: if (f_chance(0.5)) f_cell_divide(); break;
 		}
 	}
 }
